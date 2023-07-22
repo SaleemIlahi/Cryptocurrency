@@ -1,0 +1,60 @@
+.menubar {
+  width: 100%;
+  height: 100%;
+  background: var(--black-v1-color);
+  padding: 10px;
+}
+
+.logo_cnt {
+  width: 90%;
+  height: 100px;
+  background: var(--black-v3-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.logo_cnt img {
+  width: 60px;
+  height: 60px;
+}
+
+.logo_text {
+  font-size: 1.2rem;
+  color: var(--white-color);
+}
+
+.menu_navigation {
+  width: 90%;
+  border-radius: 10px;
+  background: var(--black-v3-color);
+  margin: 20px auto;
+  padding: 10px 30px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px 0;
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.icon:hover {
+  background: var(--black-v1-color);
+}
+
+.icon img {
+  width: 18px;
+  margin-right: 20px;
+}
+
+.icon span {
+  color: var(--white-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
