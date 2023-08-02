@@ -14,7 +14,9 @@ function Card({ coinData }) {
           <span>{coinData.symbol}</span>
         </div>
         <div className="coin_name">{coinData.name}</div>
-        <div className="coin_price">$ {Number(coinData.price).toFixed(2)}</div>
+        <div className="coin_price">
+          ${Number(coinData.price).toLocaleString("en-US")}
+        </div>
       </div>
       <div className="right_dv">
         <div

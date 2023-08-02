@@ -1,31 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Card from "../Card/Card";
 import "./slider.css";
 import { register } from "swiper/element/bundle";
+import { CryptoContext } from "../../Context/CryptoContext";
 register();
 
 function Slider() {
-  let [fetchData, setFetchData] = useState([]);
-  let loadApi = async () => {
-    const options = {
-      headers: {
-        "x-access-token":
-          "coinranking6a40593da1e7dbe46d7730c04ad819d3cb05dc836d334a85",
-      },
-    };
-    let data = await fetch(
-      "https://api.coinranking.com/v2/coins?limit=10",
-      options
-    );
-    let response = await data.json();
-    setFetchData(response.data.coins);
-  };
-  useEffect(() => {
-    loadApi();
-  }, []);
+  const [cryptoData] = useContext(CryptoContext);
   return (
     <div className="slide_cnt" virtual="true">
-      {fetchData.length > 0 ? (
+      {cryptoData.length > 0 ? (
         <swiper-container
           slides-per-view="3"
           space-between="30"
@@ -35,7 +19,7 @@ function Slider() {
           autoplay="true"
           navigation="true"
         >
-          {fetchData.map((el, i) => {
+          {cryptoData.map((el, i) => {
             return (
               <swiper-slide
                 key={i}
@@ -52,7 +36,7 @@ function Slider() {
           })}
         </swiper-container>
       ) : (
-        console.log(fetchData)
+        <h4 style={{ textAlign: "center", color: "white" }}>Loading...</h4>
       )}
     </div>
   );
