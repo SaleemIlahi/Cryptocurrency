@@ -1,15 +1,20 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import "./slider.css";
 import { register } from "swiper/element/bundle";
-import { CryptoContext } from "../../Context/CryptoContext";
+import { api } from "../../api";
 register();
 
 function Slider() {
-  const [cryptoData] = useContext(CryptoContext);
+  const [crypApi, setCrypApi] = useState([]);
+  useEffect(() => {
+    api(20).then((el) => {
+      setCrypApi(el.data.coins);
+    });
+  }, []);
   return (
     <div className="slide_cnt" virtual="true">
-      {cryptoData.length > 0 ? (
+      {crypApi.length > 0 ? (
         <swiper-container
           slides-per-view="3"
           space-between="30"
@@ -19,7 +24,7 @@ function Slider() {
           autoplay="true"
           navigation="true"
         >
-          {cryptoData.map((el, i) => {
+          {crypApi.map((el, i) => {
             return (
               <swiper-slide
                 key={i}
