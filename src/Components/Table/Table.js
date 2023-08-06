@@ -9,9 +9,13 @@ const Table = () => {
   } = useContext(TableContext);
   const [crypApi, setCrypApi] = useState([]);
   useEffect(() => {
-    api(50).then((el) => {
-      setCrypApi(el.data.coins);
-    });
+    try {
+      api(50).then((el) => {
+        setCrypApi(el.data.coins);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
   useEffect(() => {
     setCrypApi(data);
@@ -32,7 +36,7 @@ const Table = () => {
           {crypApi.length > 0 ? (
             crypApi.map((el, i) => {
               return (
-                <tr>
+                <tr key={i}>
                   <td>
                     <img src={el.iconUrl} alt={el.symbol} />
                   </td>
@@ -58,7 +62,15 @@ const Table = () => {
               );
             })
           ) : (
-            <h4 style={{ textAlign: "center", color: "white" }}>Loading...</h4>
+            <tr>
+              <td> - </td>
+              <td> - </td>
+              <td style={{ textAlign: "center", color: "white" }}>
+                Loading...
+              </td>
+              <td> - </td>
+              <td> - </td>
+            </tr>
           )}
         </tbody>
       </table>

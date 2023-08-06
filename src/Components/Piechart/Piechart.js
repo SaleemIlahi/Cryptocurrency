@@ -85,9 +85,13 @@ const Piechart = () => {
   const [pieIndex, setPieIndex] = useState(0);
   const [crypApi, setCrypApi] = useState([]);
   useEffect(() => {
-    api(20).then((el) => {
-      setCrypApi(el.data.stats);
-    });
+    try {
+      api(20).then((el) => {
+        setCrypApi(el.data.stats);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
   const COLORS = [
     "#1976D2",

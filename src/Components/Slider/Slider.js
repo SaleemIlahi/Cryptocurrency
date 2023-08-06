@@ -8,9 +8,13 @@ register();
 function Slider() {
   const [crypApi, setCrypApi] = useState([]);
   useEffect(() => {
-    api(20).then((el) => {
-      setCrypApi(el.data.coins);
-    });
+    try {
+      api(20).then((el) => {
+        setCrypApi(el.data.coins);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
   return (
     <div className="slide_cnt" virtual="true">
